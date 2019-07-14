@@ -19,6 +19,34 @@
   <script>
       // write your code here
       // ......
+  var oTxt=document.getElementsByTagName("input")[0];
+  var oStart=document.getElementsByTagName("input")[1];
+  var oStop=document.getElementsByTagName("input")[2];
+  var oReset=document.getElementsByTagName("input")[3];
+  var n= 0, timer=null;
+  //实现开始计时
+  oStart.onclick= function () {
+    clearInterval(timer);
+    timer=setInterval(function () {
+      n++;
+      var m=parseInt(n/60);
+      var s=parseInt(n%60);
+      oTxt.value=toDub(m)+":"+toDub(s);
+    },1000/60);
+  };
+  //实现暂停并且清空计时器
+  oStop.onclick= function () {
+    clearInterval(timer);
+  }
+  //实现重置
+  oReset.onclick= function () {
+    oTxt.value="00:00";
+    n=0;
+  }
+  //补零
+  function toDub(n){
+    return n<10?"0"+n:""+n;
+  }
   </script>
   </body>
   </html>
